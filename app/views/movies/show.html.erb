@@ -1,0 +1,19 @@
+<%= @movie.title %>
+<p><b>Released:</b> <%= @movie.released %></p>
+<p><b>IMDB Rating:</b> <%= @movie.imdb_rating %></p>
+<p><b>Genre:</b> <%= @movie.genre %></p>
+<p><b>Runtime:</b> <%= @movie.runtime %></p>
+<p><b>Actors:</b> <%= @movie.actors %></p>
+<p><b>Director:</b> <%= @movie.director %></p>
+<p><%= @movie.description %></p>
+<%= link_to 'Edit', edit_movie_path(@movie) %>
+<%= button_to 'Delete', movie_path(@movie), method: :delete %>
+<%= link_to 'add comment', new_movie_comment_path(@movie) if user_signed_in? %>
+<% @comments.each do |comment| %>
+  <br>
+  <%= comment.user.email %>
+  <br>
+  <%= comment.body %>
+  <br>
+  <%= link_to 'Edit comment', edit_movie_comment_path(@movie, comment) if current_user == comment.user %>
+<% end %>

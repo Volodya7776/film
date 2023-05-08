@@ -1,0 +1,6 @@
+<% @movies.each do |movie| %>
+  <p><%= movie.title %></p>
+  <p><%= movie.description %></p>
+  <%= link_to 'Show', movie_path(movie), class: 'btn btn-dark' %>
+  <%= link_to 'Edit', edit_movie_path(movie), class: 'btn btn-dark' if current_user == movie.user %>
+<% end %>
